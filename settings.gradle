@@ -1,0 +1,4 @@
+include ':mylibrary'
+include ':sharedbase'
+include ':app'
+rootProject.name = "BaseApp"
