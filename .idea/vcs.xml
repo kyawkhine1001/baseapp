@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/mylibrary" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/sharedbase" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sharedbaseone" vcs="Git" />
   </component>
 </project>

@@ -1,2 +1,2 @@
-//include ':sharedbaseone'
+include ':app'
 include ':mylibrary'
