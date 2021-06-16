@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kkk.mylibrary.ui.adapter.displayer.ItemDisplayer
-import com.kkk.mylibrary.ui.adapter.displayer.ViewType
 import com.kkk.mylibrary.ui.adapter.viewholder.BaseViewHolder
 
 class DelegateAdapter : RecyclerView.Adapter<BaseViewHolder>(){
@@ -22,6 +21,10 @@ class DelegateAdapter : RecyclerView.Adapter<BaseViewHolder>(){
 
     fun setData(items:MutableList<ItemDisplayer>){
         this.items = items
+        notifyDataSetChanged()
+    }
+    fun addData(item:ItemDisplayer){
+        this.items.add(item)
         notifyDataSetChanged()
     }
 }
