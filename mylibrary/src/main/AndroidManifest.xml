@@ -3,4 +3,12 @@
     package="com.kkk.mylibrary">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <activity
+            android:name=".ui.activity.BaseActivity"
+            android:label="@string/title_activity_base"
+            android:theme="@style/Theme.BaseApp.NoActionBar"></activity>
+    </application>
+
 </manifest>
