@@ -56,7 +56,7 @@ abstract class BaseFragment : Fragment() {
 
     private fun addProgressBar(@StyleRes theme:Int) {
         if (isShowingProgressBar) return
-        val dialog = Dialog(requireContext(), theme)
+        val dialog = Dialog(requireActivity(), theme)
         dialog.setContentView(R.layout.loading)
         dialog.setCancelable(false)
         progressDialog = dialog

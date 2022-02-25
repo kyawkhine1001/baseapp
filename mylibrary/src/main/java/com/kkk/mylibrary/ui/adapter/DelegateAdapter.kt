@@ -1,5 +1,6 @@
 package com.kkk.mylibrary.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,10 +20,12 @@ class DelegateAdapter : RecyclerView.Adapter<BaseViewHolder>(){
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) = items[position].bind(holder.itemView)
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(items:MutableList<ItemDisplayer>){
         this.items = items
         notifyDataSetChanged()
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun addData(item:ItemDisplayer){
         this.items.add(item)
         notifyDataSetChanged()

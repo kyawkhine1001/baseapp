@@ -3,6 +3,7 @@ package com.kkk.mylibrary.ui.activity
 import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.annotation.CallSuper
 import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
@@ -61,5 +62,14 @@ abstract class BaseActivity : AppCompatActivity() {
     fun hideLoadingView() {
         progressDialog?.hide()
         isShowingProgressBar = false
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.itemId
+        if (id == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

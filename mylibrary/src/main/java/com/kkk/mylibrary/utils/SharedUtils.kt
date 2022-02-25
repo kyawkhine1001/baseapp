@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
@@ -89,5 +88,12 @@ object SharedUtils {
         val manager = context.getSystemService(service) as ConnectivityManager?
         val network = manager?.activeNetworkInfo
         return (network != null)
+    }
+
+    fun formatHoursAndMinutes(totalMinutes: Int): Pair<String,String> {
+        var minutes = (totalMinutes % 60).toString()
+        minutes = if (minutes.length == 1) "0$minutes" else minutes
+        val hour = (totalMinutes / 60)
+        return Pair(hour.toString(),minutes)
     }
 }

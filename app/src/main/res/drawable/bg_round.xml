@@ -1,0 +1,36 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <stroke
+        android:width="2dp"
+        android:color="@android:color/holo_green_dark" />
+    <solid android:color="@android:color/transparent" />
+    <!--<gradient android:startColor="#8c0c8b" android:centerColor="#73018f" android:endColor="#570077" android:angle="0" />-->
+</shape>
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:shape="rectangle">-->
+<!--    <solid android:color="@android:color/white"/>-->
+<!--    <corners android:radius="0dp"/>-->
+<!--</shape>-->
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item>-->
+<!--        <shape>-->
+<!--            <gradient-->
+<!--                android:type="linear"-->
+<!--                android:startColor="@android:color/white"-->
+<!--                android:endColor="@android:color/white"-->
+<!--                android:angle="90" />-->
+
+<!--            &lt;!&ndash; Round the top corners. &ndash;&gt;-->
+<!--            <corners-->
+<!--                android:topLeftRadius="8dp"-->
+<!--                android:topRightRadius="8dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</selector>-->
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:shape="rectangle">-->
+<!--    <solid android:color="@android:color/black" />-->
+<!--    <padding android:bottom="-14dp"-->
+<!--        android:left="-14dp" android:right="-14dp"-->
+<!--        android:top="-14dp" />-->
+<!--</shape>-->

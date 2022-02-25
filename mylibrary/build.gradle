@@ -18,12 +18,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -80,6 +79,9 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$androidArchitectureVersion"
     testImplementation "android.arch.core:core-testing:$androidArchitectureVersion"
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
     // Koin
 //    implementation "org.koin:koin-android-viewmodel:$koin_version"
 //    implementation "org.koin:koin-android:$koin_version"

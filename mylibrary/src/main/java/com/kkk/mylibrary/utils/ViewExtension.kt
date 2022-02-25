@@ -3,9 +3,13 @@ package com.kkk.mylibrary.utils
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.text.TextUtils
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
+import com.bumptech.glide.Glide
+import com.kkk.mylibrary.R
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -24,4 +28,17 @@ fun Context.showToast(@StringRes resId: Int) {
 
 fun Context.showToast(msg: String?) {
     Toast.makeText(this, "$msg", Toast.LENGTH_LONG).show()
+}
+
+fun ImageView.loadImageWithGlide(context: Context,url:String){
+        Glide
+            .with(context)
+            .load(url)
+            .centerCrop()
+            .thumbnail(Glide.with(getContext()).load(R.drawable.loading1))
+            .into(this)
+}
+
+fun String.isEmailValid(): Boolean {
+    return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
