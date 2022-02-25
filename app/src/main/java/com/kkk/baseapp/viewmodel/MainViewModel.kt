@@ -4,11 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import com.kkk.androidarchitectures.viewmodels.BaseViewModel
 import com.kkk.baseapp.data.repositories.MainRepository
 import com.kkk.baseapp.network.networkresponse.*
+import com.kkk.mylibrary.network.rx.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(
-    private val mainRepo: MainRepository
+    private val mainRepo: MainRepository,
+    private val schedulers: SchedulerProvider
 ) : BaseViewModel() {
     var popularMovieErrorState = MutableLiveData<String>()
     var popularMovieSuccessState = MutableLiveData<List<PopularMovie>>()
@@ -31,8 +33,8 @@ class MainViewModel(
             .observeForever {
                 launch {
                     it
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(schedulers.io())
+                        .observeOn(schedulers.mainThread())
                         .doOnNext {
                             it.results?.let { it1 -> mainRepo.savePopularMovieDataIntoDatabase(it1.mappingToPopularList()) }
                         }
@@ -54,8 +56,8 @@ class MainViewModel(
             .observeForever {
                 launch {
                     it
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(schedulers.io())
+                        .observeOn(schedulers.mainThread())
                         .doOnNext {
                             it.results?.let { it1 -> mainRepo.saveUpcomingMovieDataIntoDatabase(it1.mappingToUpcomingList()) }
                         }
@@ -75,8 +77,8 @@ class MainViewModel(
             .observeForever {
                 launch {
                     it
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(schedulers.io())
+                        .observeOn(schedulers.mainThread())
                         .doOnNext {
                             it.results?.let { it1 -> mainRepo.saveTrendingMovieDataIntoDatabase(it1.mappingToTrendingList()) }
                         }
@@ -96,8 +98,8 @@ class MainViewModel(
             .observeForever {
                 launch {
                     it
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(schedulers.io())
+                        .observeOn(schedulers.mainThread())
                         .subscribe({ response ->
                             mainRepo.favouriteMovieData = MutableLiveData()
                             favouriteMovieSuccessState.postValue(response.results)
@@ -118,8 +120,8 @@ class MainViewModel(
             .observeForever {
                 launch {
                     it
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(schedulers.io())
+                        .observeOn(schedulers.mainThread())
                         .subscribe({ response ->
                             mainRepo.movieDetailData = MutableLiveData()
                             movieDetailSuccessState.postValue(response)

@@ -17,10 +17,13 @@ import com.kkk.baseapp.ui.adapter.displayer.MovieFavouriteItemDisplayer
 import com.kkk.baseapp.ui.adapter.displayer.MovieListDisplayer
 import com.kkk.baseapp.viewmodel.MainViewModel
 import com.kkk.baseapp.viewmodel.factory.MainViewModelFactory
+import com.kkk.mylibrary.network.rx.AndroidSchedulerProvider
+import com.kkk.mylibrary.network.rx.SchedulerProvider
 import com.kkk.mylibrary.ui.activity.BaseActivity
 import com.kkk.mylibrary.ui.adapter.DelegateAdapter
 import com.kkk.mylibrary.ui.adapter.displayer.ItemDisplayer
 import kotlinx.android.synthetic.main.activity_favourite_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavouriteListActivity : BaseActivity() {
     override val layoutId: Int
@@ -28,10 +31,13 @@ class FavouriteListActivity : BaseActivity() {
     override val progressBarStyle: Int
     get() = com.kkk.mylibrary.R.style.ThemeLoadingDialog
 
-    private val mViewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this, MainViewModelFactory(Injection.provideMainRepository(this)))
-            .get(MainViewModel::class.java)
-    }
+//    private val mViewModel: MainViewModel by lazy {
+//        ViewModelProviders.of(this, MainViewModelFactory(Injection.provideMainRepository(this),
+//            AndroidSchedulerProvider()
+//        ))
+//            .get(MainViewModel::class.java)
+//    }
+    private val mViewModel: MainViewModel by viewModel()
 
     private var mItemList = mutableListOf<ItemDisplayer>()
     private val mAdapter: DelegateAdapter = DelegateAdapter()

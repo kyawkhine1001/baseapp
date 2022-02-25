@@ -46,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun addProgressBar(@StyleRes theme:Int) {
-        if (isShowingProgressBar) return
+        if (isShowingProgressBar && progressDialog?.isShowing == true) return
         val dialog = Dialog(this, theme)
         dialog.setContentView(R.layout.loading)
         dialog.setCancelable(false)
@@ -54,7 +54,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun showLoadingView() {
-        if (isShowingProgressBar) return
+        if (isShowingProgressBar && progressDialog?.isShowing == true) return
         progressDialog?.show()
         isShowingProgressBar = true
     }
