@@ -1,8 +1,8 @@
 package com.kkk.mylibrary.ui.adapter.displayer
 
-import android.view.View
+import androidx.databinding.ViewDataBinding
 
 interface ItemDisplayer {
     fun getViewType():ViewType
-    fun bind(itemView: View)
+    fun bind(vb: ViewDataBinding)
 }

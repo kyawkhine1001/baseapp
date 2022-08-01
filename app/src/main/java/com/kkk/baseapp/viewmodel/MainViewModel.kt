@@ -1,12 +1,9 @@
 package com.kkk.baseapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.kkk.androidarchitectures.viewmodels.BaseViewModel
 import com.kkk.baseapp.data.repositories.MainRepository
 import com.kkk.baseapp.network.networkresponse.*
 import com.kkk.mylibrary.network.rx.SchedulerProvider
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(
     private val mainRepo: MainRepository,

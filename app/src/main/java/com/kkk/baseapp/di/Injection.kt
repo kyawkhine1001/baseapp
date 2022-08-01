@@ -1,4 +1,4 @@
-package com.kkk.androidarchitectures.di
+package com.kkk.baseapp.di
 
 import android.content.Context
 import com.google.gson.Gson
@@ -36,7 +36,7 @@ object Injection {
     }
 
     fun provideMainRepository(context: Context): MainRepository {
-        return MainRepositoryImpl(context,provideApiService(), provideDatabase(context))
+        return MainRepositoryImpl(context, provideApiService(), provideDatabase(context))
     }
 
 }

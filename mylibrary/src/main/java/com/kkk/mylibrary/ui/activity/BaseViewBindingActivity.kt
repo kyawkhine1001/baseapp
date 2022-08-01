@@ -1,48 +1,66 @@
 package com.kkk.mylibrary.ui.activity
 
 import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
-import androidx.annotation.CallSuper
-import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.kkk.mylibrary.BaseApp
 import com.kkk.mylibrary.R
-import com.kkk.mylibrary.utils.extensions.setCurrentLocale
 import java.util.*
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
 
-    abstract val layoutId: Int
-    abstract val progressBarStyle:Int
+    private var _hasConnection: Boolean = false
+    protected val hasConnection : Boolean
+    get() = _hasConnection
+
+    private var _binding: ViewBinding? = null
+    abstract val bindingInflater: (LayoutInflater) -> VB
     private var isShowingProgressBar: Boolean = false
     private var progressDialog: Dialog? = null
+
+    @Suppress("UNCHECKED_CAST")
+    protected val binding: VB
+        get() = _binding as VB
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layoutId)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            setCurrentLocale()
-            subscribeToLanguageChanges()
-        }
-        addProgressBar(progressBarStyle)
+
+        _binding = bindingInflater.invoke(layoutInflater)
+        setContentView(requireNotNull(_binding).root)
+        setup()
+        observers()
+        listeners()
+//        checkConnection()
+        subscribeToLanguageChanges()
     }
 
-    @CallSuper
+    abstract fun setup()
+    abstract fun observers()
+    abstract fun listeners()
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            // click on 'up' button in the action bar, handle it here
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     open fun onLanguageChanged(newLocale: Locale) {
 
     }
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+
     private fun subscribeToLanguageChanges() {
-        (application as BaseApp).appLanguage.observe(this, androidx.lifecycle.Observer {
+        (application as BaseApp).appLanguage.observe(this) {
             it?.let {
-//                Preferences.setCurrentLocale(this,it.language)
-                setCurrentLocale()
                 onLanguageChanged(it)
-                (application as BaseApp).appLanguage.value = null
             }
-        })
+        }
     }
 
     private fun addProgressBar(@StyleRes theme:Int) {
@@ -62,14 +80,5 @@ abstract class BaseActivity : AppCompatActivity() {
     fun hideLoadingView() {
         progressDialog?.hide()
         isShowingProgressBar = false
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id: Int = item.itemId
-        if (id == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

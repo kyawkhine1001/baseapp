@@ -51,7 +51,7 @@ class MainRepositoryImpl(
                 .observeOn(Schedulers.io())
                 .subscribe {
                     disposable.clear()
-                    if (SharedUtils.isNetworkAvailable(context)) {
+                    if (SharedUtils.isNetworkAvailable(context) && it.isEmpty()) {
                         upcomingMovieData.postValue(mApiService.loadMovieList(MovieType.UPCOMING.title,AppConstants.apiKey))
                     } else {
                         val responseData = PopularMovieListResponse()
@@ -71,7 +71,7 @@ class MainRepositoryImpl(
                 .observeOn(Schedulers.io())
                 .subscribe {
                     disposable.clear()
-                    if (SharedUtils.isNetworkAvailable(context)) {
+                    if (SharedUtils.isNetworkAvailable(context) && it.isEmpty()) {
                         trendingMovieData.postValue(mApiService.loadTrendingMovieList(AppConstants.apiKey))
                     } else {
                         val responseData = PopularMovieListResponse()

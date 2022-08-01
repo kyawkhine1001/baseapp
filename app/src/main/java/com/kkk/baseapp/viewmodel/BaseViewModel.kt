@@ -1,4 +1,4 @@
-package com.kkk.androidarchitectures.viewmodels
+package com.kkk.baseapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import com.kkk.mylibrary.BaseApp
 import com.kkk.mylibrary.R
-import com.kkk.mylibrary.utils.setCurrentLocale
+import com.kkk.mylibrary.utils.extensions.setCurrentLocale
 import java.util.*
 
 abstract class BaseFragment : Fragment() {

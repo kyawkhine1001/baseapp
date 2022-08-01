@@ -1,4 +1,4 @@
-package com.kkk.mylibrary.utils
+package com.kkk.mylibrary.utils.extensions
 
 import android.app.Activity
 import android.content.Context
@@ -39,6 +39,3 @@ fun ImageView.loadImageWithGlide(context: Context,url:String){
             .into(this)
 }
 
-fun String.isEmailValid(): Boolean {
-    return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
-}
