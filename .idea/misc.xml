@@ -24,7 +24,15 @@
         <entry key="app/src/main/res/layout/list_item_page_type.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/menu/movie_review_menu.xml" value="0.2760416666666667" />
         <entry key="mylibrary/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.209" />
+        <entry key="mylibrary/src/main/res/drawable/bg_counter_left_selected.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/drawable/bg_counter_right_default.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/drawable/bg_counter_right_selected.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/drawable/ic_counter_minus.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/drawable/ic_no_internet_connection.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/drawable/ic_server_errror.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/layout/layout_error_handling.xml" value="0.1" />
         <entry key="mylibrary/src/main/res/layout/loading.xml" value="0.1" />
+        <entry key="mylibrary/src/main/res/layout/view_custom_counter_view.xml" value="0.1" />
       </map>
     </option>
   </component>
