@@ -10,4 +10,12 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="txt_mmk">%1$s MMK</string>
     <string name="txt_try_again">Try Again!</string>
+    <string name="txt_crop_image">Crop Image</string>
+    <string name="txt_download_completed">Download Completed</string>
+    <string name="txt_photo_position_detail">%1$d of %2$d</string>
+    <string name="txt_permission_already_denied">Please enable permission in setting first</string>
+    <string name="txt_camera">Camera</string>
+    <string name="txt_gallery">Gallery</string>
+    <string name="txt_save">Save</string>
+    <string name="txt_no_network_connectivity">No internet connection found. Check your connection and try again.</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.kkk.mylibrary.ui.activity
+package com.kkk.mylibrary.ui.fragment
 
 import android.app.Dialog
 import android.os.Bundle
