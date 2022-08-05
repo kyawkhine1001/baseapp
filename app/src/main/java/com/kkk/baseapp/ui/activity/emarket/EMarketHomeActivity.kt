@@ -9,7 +9,9 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kkk.baseapp.R
 import com.kkk.baseapp.databinding.ActivityEmarketHomeBinding
+import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem
 import com.kkk.baseapp.ui.adapter.displayer.TitleDisplayer
 import com.kkk.baseapp.ui.adapter.displayer.emarket.EMarketStoreItemDisplayer
 import com.kkk.baseapp.viewmodel.EMarketViewModel
@@ -19,6 +21,7 @@ import com.kkk.mylibrary.ui.adapter.DelegateAdapter
 import com.kkk.mylibrary.ui.adapter.displayer.ItemDisplayer
 import com.kkk.mylibrary.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @AndroidEntryPoint
@@ -36,8 +39,10 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
     private var isShow = true
     private var scrollRange = -1
 
+    private var mItemDataList = mutableListOf<EMarketShopProductListResponseItem>()
     private var mItemList = mutableListOf<ItemDisplayer>()
     private val mAdapter: DelegateAdapter = DelegateAdapter()
+    private var isSelectedAll:Boolean = false
 
 //    private val mViewModel: EMarketViewModel by viewModel()
     private val mViewModel by lazy {
@@ -86,27 +91,6 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
             layoutManager = GridLayoutManager(context, 1)
             adapter = mAdapter
         }
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-//        mItemList.add(TitleDisplayer("Hello"))
-        mAdapter.setData(mItemList)
     }
 
     override fun observers() {
@@ -145,9 +129,9 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
                 }
                 is ResourceState.Success -> {
                     binding.apply {
-                        val data = it.successData
-                        data.map {
-                            mItemList.add(EMarketStoreItemDisplayer(it))
+                        mItemDataList = it.successData
+                        mItemDataList.mapIndexed { index,item ->
+                            mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickMenuItem))
                         }
                         mAdapter.setData(mItemList)
                     }
@@ -166,6 +150,24 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
     }
 
     override fun listeners() {
+        binding.tvSelectAll.setOnClickListener{
+            mItemList.clear()
+            isSelectedAll = !isSelectedAll
+            binding.tvSelectAll.text = if (isSelectedAll) getString(R.string.txt_unselect_all) else getString(R.string.txt_select_all)
+            mItemDataList.mapIndexed { index,item ->
+                item.isChecked = isSelectedAll
+                mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickMenuItem))
+            }
+            mAdapter.setData(mItemList)
+        }
+    }
+
+    private fun onClickCheckBox(position:Int,data: EMarketShopProductListResponseItem){
+
+    }
+
+    private fun onClickMenuItem(position:Int,data:EMarketShopProductListResponseItem){
+
     }
 
 }

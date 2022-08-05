@@ -62,6 +62,7 @@ fun createOkHttpClient(_errorSubject:PublishSubject<Any>,headerInterceptor:Inter
     }
     return client.build()
 }
+
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
     val retrofit = Retrofit.Builder()
         .baseUrl(url)

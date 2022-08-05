@@ -9,7 +9,7 @@ import com.kkk.mylibrary.ui.adapter.displayer.ViewType
 import com.kkk.mylibrary.ui.custom_view.CustomCounterView
 import com.kkk.mylibrary.utils.extensions.loadImageWithGlide
 
-class EMarketStoreItemDisplayer(private val data: EMarketShopProductListResponseItem) :ItemDisplayer {
+class EMarketStoreItemDisplayer(private val position:Int, private val data: EMarketShopProductListResponseItem,private val onClickCheckBox:(Int,EMarketShopProductListResponseItem) -> Unit,private val onClickItem:(Int,EMarketShopProductListResponseItem) -> Unit) :ItemDisplayer {
     override fun getViewType(): ViewType  = ViewType(R.layout.list_item_emarket_shop_product)
 
     override fun bind(vb: ViewDataBinding) {
@@ -18,6 +18,7 @@ class EMarketStoreItemDisplayer(private val data: EMarketShopProductListResponse
             ivStore.loadImageWithGlide(root.context,data.imageUrl)
             tvMenuName.text = data.name
             tvMenuPrice.text = "$ ${data.price}"
+            cbMenu.isChecked = data.isChecked == true
             ccvMenu.setOnClickListeners(object : CustomCounterView.CounterButtonListener {
                 override fun onClickMinusButton() {
 
@@ -27,6 +28,10 @@ class EMarketStoreItemDisplayer(private val data: EMarketShopProductListResponse
                 }
 
             })
+            cbMenu.setOnCheckedChangeListener { compoundButton, isChecked ->
+                onClickCheckBox(position,data)
+            }
+            root.setOnClickListener { onClickItem(position,data) }
         }
     }
 }

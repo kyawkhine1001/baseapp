@@ -88,6 +88,18 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+        <TextView
+            android:id="@+id/tv_select_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_select_all"
+            android:textSize="@dimen/text_size_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/spacing_16dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_shop_product_list"
             android:layout_width="match_parent"
@@ -95,11 +107,20 @@
             tools:listitem="@layout/list_item_emarket_shop_product"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_select_all"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cart : 2 items"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/spacing_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
     <include
         android:id="@+id/loadingView"
         layout="@layout/layout_loading"
