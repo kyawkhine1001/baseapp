@@ -1,4 +1,4 @@
-package com.kkk.baseapp.di
+package com.kkk.baseapp.di.koin
 
 import com.kkk.baseapp.data.db.MyDatabase
 import com.kkk.baseapp.network.ApiService

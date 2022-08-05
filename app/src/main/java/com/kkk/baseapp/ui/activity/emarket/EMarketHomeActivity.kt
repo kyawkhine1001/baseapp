@@ -3,26 +3,25 @@ package com.kkk.baseapp.ui.activity.emarket
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.graphics.drawable.toDrawable
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.appbar.AppBarLayout
-import com.kkk.baseapp.R
 import com.kkk.baseapp.databinding.ActivityEmarketHomeBinding
-import com.kkk.baseapp.ui.activity.TravelActivity
 import com.kkk.baseapp.ui.adapter.displayer.TitleDisplayer
+import com.kkk.baseapp.ui.adapter.displayer.emarket.EMarketStoreItemDisplayer
 import com.kkk.baseapp.viewmodel.EMarketViewModel
-import com.kkk.baseapp.viewmodel.MainViewModel
 import com.kkk.mylibrary.network.ResourceState
 import com.kkk.mylibrary.ui.activity.BaseViewBindingActivity
 import com.kkk.mylibrary.ui.adapter.DelegateAdapter
 import com.kkk.mylibrary.ui.adapter.displayer.ItemDisplayer
 import com.kkk.mylibrary.utils.extensions.showToast
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>() {
 
     companion object{
@@ -40,7 +39,10 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
     private var mItemList = mutableListOf<ItemDisplayer>()
     private val mAdapter: DelegateAdapter = DelegateAdapter()
 
-    private val mViewModel: EMarketViewModel by viewModel()
+//    private val mViewModel: EMarketViewModel by viewModel()
+    private val mViewModel by lazy {
+        ViewModelProvider(this)[EMarketViewModel::class.java]
+}
 
     override val bindingInflater: (LayoutInflater) -> ActivityEmarketHomeBinding
         get() = ActivityEmarketHomeBinding::inflate
@@ -145,7 +147,7 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
                     binding.apply {
                         val data = it.successData
                         data.map {
-                            mItemList.add(TitleDisplayer(it.name))
+                            mItemList.add(EMarketStoreItemDisplayer(it))
                         }
                         mAdapter.setData(mItemList)
                     }

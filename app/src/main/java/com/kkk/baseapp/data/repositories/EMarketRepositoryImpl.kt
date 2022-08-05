@@ -15,9 +15,9 @@ class EMarketRepositoryImpl(
     private val database: MyDatabase
 ):EMarketRepository {
 
-    override fun getStoreInfo(): Flow<ResourceState<EMarketShopResponse>>  = HandleResponseUtil.doNetworkCallNormal(context,mApiService.getStoreInfo())
+    override fun getStoreInfo(): Flow<ResourceState<EMarketShopResponse>>  = HandleResponseUtil.doNetworkCall(context,mApiService.getStoreInfo())
 
-    override fun getStoreProductList(): Flow<ResourceState<EMarketShopProductListResponse>>  = HandleResponseUtil.doNetworkCallNormal(context,mApiService.getStoreProductList())
+    override fun getStoreProductList(): Flow<ResourceState<EMarketShopProductListResponse>>  = HandleResponseUtil.doNetworkCall(context,mApiService.getStoreProductList())
 
-    override fun makeOrder(): Flow<ResourceState<Int>>  = HandleResponseUtil.doNetworkCallNormal(context,mApiService.makeOrder())
+    override fun makeOrder(): Flow<ResourceState<Int>>  = HandleResponseUtil.doNetworkCall(context,mApiService.makeOrder())
 }

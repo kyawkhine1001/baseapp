@@ -5,17 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kkk.baseapp.data.repositories.EMarketRepository
 import com.kkk.baseapp.data.repositories.MainRepository
+import com.kkk.baseapp.di.hilt.IoDispatcher
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
 import com.kkk.mylibrary.network.rx.SchedulerProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EMarketViewModel(
+@HiltViewModel
+class EMarketViewModel @Inject constructor(
     private val eMarketRepo: EMarketRepository,
-    private val schedulers: SchedulerProvider
+    private val schedulers: SchedulerProvider,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
 ): BaseViewModel() {
 
     private var _storeInfoLD:MutableLiveData<ResourceState<EMarketShopResponse>> = MutableLiveData(ResourceState.Loading)
@@ -30,7 +36,7 @@ class EMarketViewModel(
     }
     fun getStoreInfo(){
         _storeInfoLD.postValue(ResourceState.Loading)
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             eMarketRepo.getStoreInfo()
                 .collect {
                     if (it is ResourceState.Success){
@@ -44,7 +50,7 @@ class EMarketViewModel(
 
     fun getStoreProductList(){
         _storeProductListLD.postValue(ResourceState.Loading)
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             eMarketRepo.getStoreProductList()
                 .collect{
                     if (it is ResourceState.Success){

@@ -1,4 +1,4 @@
-package com.kkk.baseapp.di
+package com.kkk.baseapp.di.koin
 
 import com.kkk.baseapp.data.repositories.EMarketRepository
 import com.kkk.baseapp.data.repositories.EMarketRepositoryImpl
@@ -22,7 +22,7 @@ val movieModule = module {
 //    ViewModel for Home
     viewModel { MainViewModel(get(), get()) }
 
-    viewModel { EMarketViewModel(get(), get()) }
+//    viewModel { EMarketViewModel(get(), get()) }
 
 }
 
@@ -31,4 +31,4 @@ val rxModule = module {
     factory<SchedulerProvider> { AndroidSchedulerProvider() }
 }
 
-val appModule = listOf(rxModule, movieModule)+datasourceModule
+val appModule = listOf(rxModule, movieModule)+ datasourceModule

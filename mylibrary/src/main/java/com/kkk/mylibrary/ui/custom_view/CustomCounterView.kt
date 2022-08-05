@@ -43,7 +43,7 @@ class CustomCounterView : LinearLayout {
             this.buttonListener?.onClickMinusButton()
         }
         rlPlus.setOnClickListener {
-            if (tvCount.text.toString().toInt() < maxCount ?: 1){
+            if (tvCount.text.toString().toInt() < (maxCount ?: 1000)){
                 val count = tvCount.text.toString().toInt()+1
                 tvCount.text = count.toString()
                 setBackgroundForPlusMinusButton(count)
@@ -58,7 +58,7 @@ class CustomCounterView : LinearLayout {
         }else{
             rlMinus.setBackgroundResource(R.drawable.bg_counter_left_default)
         }
-        if (count<1 || count == maxCount){
+        if (count == maxCount){
             rlPlus.setBackgroundResource(R.drawable.bg_counter_right_default)
         }else{
             rlPlus.setBackgroundResource(R.drawable.bg_counter_right_selected)

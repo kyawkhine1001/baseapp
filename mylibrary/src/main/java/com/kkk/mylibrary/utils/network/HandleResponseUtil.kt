@@ -22,13 +22,13 @@ import retrofit2.Call
 
 object HandleResponseUtil {
 
-    fun <T : Any> doNetworkCall(context: Context, call: Call<BaseResponse<T>>?): Flow<ResourceState<BaseResponse<T>>> {
+    fun <T : Any> doNetworkCallWithBaseResponse(context: Context, call: Call<BaseResponse<T>>?): Flow<ResourceState<BaseResponse<T>>> {
         return flow {
             if (ConnectionCheckUtil.isOnline(context)) {
                 val apiResult = safeApiCall(Dispatchers.IO) {
                     call?.executeOrThrow()
                 }
-                emit(handleResponse(context,apiResult))
+                emit(handleResponseWithBaseResponse(context,apiResult))
             } else {
                 emit(
                     ResourceState.HttpError(
@@ -48,13 +48,13 @@ object HandleResponseUtil {
         }
     }
 
-    fun <T : Any> doNetworkCallNormal(context: Context, call: Call<T>?): Flow<ResourceState<T>> {
+    fun <T : Any> doNetworkCall(context: Context, call: Call<T>?): Flow<ResourceState<T>> {
         return flow {
             if (ConnectionCheckUtil.isOnline(context)) {
                 val apiResult = safeApiCall(Dispatchers.IO) {
                     call?.executeOrThrow()
                 }
-                emit(handleResponseNormal(context,apiResult))
+                emit(handleResponse(context,apiResult))
             } else {
                 emit(
                     ResourceState.HttpError(
@@ -101,7 +101,7 @@ object HandleResponseUtil {
     }
 
 
-    private fun <T : Any> handleResponse(context: Context,apiResult: ResourceState<BaseResponse<T>?>): ResourceState<BaseResponse<T>> {
+    private fun <T : Any> handleResponseWithBaseResponse(context: Context, apiResult: ResourceState<BaseResponse<T>?>): ResourceState<BaseResponse<T>> {
         when (apiResult) {
             is ResourceState.Success -> {
                 apiResult.successData?.let {
@@ -141,7 +141,7 @@ object HandleResponseUtil {
         }
     }
 
-    private fun <T : Any> handleResponseNormal(context: Context,apiResult: ResourceState<T?>): ResourceState<T> {
+    private fun <T : Any> handleResponse(context: Context, apiResult: ResourceState<T?>): ResourceState<T> {
         when (apiResult) {
             is ResourceState.Success -> {
                 apiResult.successData?.let {
