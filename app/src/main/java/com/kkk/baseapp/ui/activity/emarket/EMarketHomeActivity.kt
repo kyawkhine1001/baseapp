@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kkk.baseapp.R
+import com.kkk.baseapp.data.vos.EMarketShopProductListVO
 import com.kkk.baseapp.databinding.ActivityEmarketHomeBinding
+import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem
 import com.kkk.baseapp.ui.adapter.displayer.TitleDisplayer
 import com.kkk.baseapp.ui.adapter.displayer.emarket.EMarketStoreItemDisplayer
@@ -29,7 +31,7 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
 
     companion object{
         private const val IE_NAME = "IE_NAME"
-        fun newIntent(context: Context, name:String): Intent {
+        fun newIntent(context: Context, name:String?=""): Intent {
             val intent = Intent(context, EMarketHomeActivity::class.java)
             intent.putExtra(IE_NAME,name)
             return intent
@@ -39,7 +41,8 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
     private var isShow = true
     private var scrollRange = -1
 
-    private var mItemDataList = mutableListOf<EMarketShopProductListResponseItem>()
+    private var cartProductList:MutableList<EMarketShopProductListVO> = mutableListOf()
+    private var mItemDataList = mutableListOf<EMarketShopProductListVO>()
     private var mItemList = mutableListOf<ItemDisplayer>()
     private val mAdapter: DelegateAdapter = DelegateAdapter()
     private var isSelectedAll:Boolean = false
@@ -129,11 +132,39 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
                 }
                 is ResourceState.Success -> {
                     binding.apply {
-                        mItemDataList = it.successData
+                        mItemDataList = it.successData as MutableList<EMarketShopProductListVO>
                         mItemDataList.mapIndexed { index,item ->
                             mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickMenuItem))
                         }
                         mAdapter.setData(mItemList)
+                    }
+                }
+                is ResourceState.SystemError -> {
+                    showToast(it.error)
+                }
+                is ResourceState.HttpError -> {
+                    showToast(it.error)
+                }
+                else -> {
+
+                }
+            }
+        }
+        mViewModel.cartProductListLD.observe(this){
+            binding.loadingView.root.visibility =
+                if (it is ResourceState.Loading) View.VISIBLE else View.GONE
+            when(it){
+                is ResourceState.Loading, ResourceState.Initial -> {
+
+                }
+                is ResourceState.Success -> {
+                    binding.apply {
+                        cartProductList = it.successData
+                        binding.btnCart.apply {
+                            text = getString(R.string.text_cart_items_with_count,cartProductList.count())
+                            visibility = if (cartProductList.isEmpty()) View.GONE else View.VISIBLE
+                        }
+
                     }
                 }
                 is ResourceState.SystemError -> {
@@ -160,14 +191,23 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
             }
             mAdapter.setData(mItemList)
         }
+        binding.btnCart.setOnClickListener {
+            startActivity(EMarketPlaceOrderActivity.newIntent(this,
+                EMarketShopProductListResponse(cartProductList as ArrayList<EMarketShopProductListVO>)
+            ))
+        }
     }
 
-    private fun onClickCheckBox(position:Int,data: EMarketShopProductListResponseItem){
-
+    private fun onClickCheckBox(position:Int, isChecked:Boolean, data: EMarketShopProductListVO){
+        if (isChecked){
+            mViewModel.addItemToCart(data)
+        }else{
+            mViewModel.removeItemFromCart(data)
+        }
     }
 
-    private fun onClickMenuItem(position:Int,data:EMarketShopProductListResponseItem){
-
+    private fun onClickMenuItem(position:Int,data:EMarketShopProductListVO){
+//        mViewModel.addItemToCart(data)
     }
 
 }

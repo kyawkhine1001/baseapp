@@ -13,4 +13,12 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="txt_select_all">Select All</string>
     <string name="txt_unselect_all">Unselect All</string>
+    <string name="txt_order_items">Order Items</string>
+    <string name="txt_add_more">Add More</string>
+    <string name="txt_deliver_to">Deliver To</string>
+    <string name="txt_place_order">Place Order</string>
+    <string name="txt_total_amount">Total Amount</string>
+    <string name="text_cart_items_with_count">Cart : %1$d Items</string>
+    <string name="txt_successfully_order_created">Successfully Order Created</string>
+    <string name="txt_done">Done</string>
 </resources>

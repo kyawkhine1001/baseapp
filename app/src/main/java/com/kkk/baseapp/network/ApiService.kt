@@ -3,6 +3,7 @@ package com.kkk.baseapp.network
 import com.kkk.baseapp.network.networkresponse.MovieDetailResponse
 import com.kkk.baseapp.network.networkresponse.PopularMovieListResponse
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
+import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
 import io.reactivex.Observable
@@ -29,7 +30,7 @@ interface ApiService {
     fun getStoreInfo(): Call<EMarketShopResponse>
 
     @GET("products")
-    fun getStoreProductList(): Call<EMarketShopProductListResponse>
+    fun getStoreProductList(): Call<List<EMarketShopProductListResponseItem>>
 
     @POST("order")
     fun makeOrder() : Call<Int>
