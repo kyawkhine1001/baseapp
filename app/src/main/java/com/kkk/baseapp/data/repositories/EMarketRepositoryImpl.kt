@@ -3,7 +3,7 @@ package com.kkk.baseapp.data.repositories
 import android.content.Context
 import com.kkk.baseapp.data.db.MyDatabase
 import com.kkk.baseapp.network.ApiService
-import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
+import com.kkk.baseapp.network.networkrequest.EMarketPlaceOrderRequest
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
@@ -20,5 +20,5 @@ class EMarketRepositoryImpl(
 
     override fun getStoreProductList(): Flow<ResourceState<List<EMarketShopProductListResponseItem>>>  = HandleResponseUtil.doNetworkCall(context,mApiService.getStoreProductList())
 
-    override fun makeOrder(): Flow<ResourceState<Int>>  = HandleResponseUtil.doNetworkCall(context,mApiService.makeOrder())
+    override fun makeOrder(request: EMarketPlaceOrderRequest): Flow<ResourceState<Void>>  = HandleResponseUtil.doNetworkCall(context,mApiService.makeOrder(request))
 }

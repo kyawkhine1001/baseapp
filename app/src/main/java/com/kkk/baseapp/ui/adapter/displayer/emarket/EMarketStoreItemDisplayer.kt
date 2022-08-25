@@ -10,7 +10,7 @@ import com.kkk.mylibrary.ui.adapter.displayer.ViewType
 import com.kkk.mylibrary.ui.custom_view.CustomCounterView
 import com.kkk.mylibrary.utils.extensions.loadImageWithGlide
 
-class EMarketStoreItemDisplayer(private val position:Int, private val data: EMarketShopProductListVO, private val onClickCheckBox:(Int, Boolean, EMarketShopProductListVO) -> Unit, private val onClickItem:(Int, EMarketShopProductListVO) -> Unit) :ItemDisplayer {
+class EMarketStoreItemDisplayer(private val position:Int, private val data: EMarketShopProductListVO, private val onClickCheckBox:(Int, Boolean, EMarketShopProductListVO) -> Unit, private val onClickCounter:(Int, EMarketShopProductListVO) -> Unit) :ItemDisplayer {
     override fun getViewType(): ViewType  = ViewType(R.layout.list_item_emarket_shop_product)
 
     override fun bind(vb: ViewDataBinding) {
@@ -23,20 +23,29 @@ class EMarketStoreItemDisplayer(private val position:Int, private val data: EMar
             ccvMenu.setCurrentCount(data.quantity)
             ccvMenu.setOnClickListeners(object : CustomCounterView.CounterButtonListener {
                 override fun onClickMinusButton() {
-
+                    updateCounterValue(binding)
                 }
 
                 override fun onClickPlusButton() {
+                    updateCounterValue(binding)
                 }
 
             })
             cbMenu.setOnCheckedChangeListener { compoundButton, isChecked ->
+                data.isChecked = isChecked
                 onClickCheckBox(position,isChecked,data)
             }
             root.setOnClickListener {
+                data.isChecked = cbMenu.isChecked
                 cbMenu.toggle()
-//                onClickItem(position,data)
             }
         }
+    }
+
+    private fun updateCounterValue(binding:ListItemEmarketShopProductBinding){
+        val updatedData = data
+        val currentCount = binding.ccvMenu.getCurrentCount()
+        updatedData.quantity = currentCount
+        onClickCounter(position,updatedData)
     }
 }

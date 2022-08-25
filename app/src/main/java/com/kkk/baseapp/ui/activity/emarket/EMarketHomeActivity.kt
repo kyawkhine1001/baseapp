@@ -7,14 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.kkk.baseapp.R
 import com.kkk.baseapp.data.vos.EMarketShopProductListVO
 import com.kkk.baseapp.databinding.ActivityEmarketHomeBinding
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
-import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem
-import com.kkk.baseapp.ui.adapter.displayer.TitleDisplayer
 import com.kkk.baseapp.ui.adapter.displayer.emarket.EMarketStoreItemDisplayer
 import com.kkk.baseapp.viewmodel.EMarketViewModel
 import com.kkk.mylibrary.network.ResourceState
@@ -23,8 +21,6 @@ import com.kkk.mylibrary.ui.adapter.DelegateAdapter
 import com.kkk.mylibrary.ui.adapter.displayer.ItemDisplayer
 import com.kkk.mylibrary.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.android.ext.android.get
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @AndroidEntryPoint
 class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>() {
@@ -91,6 +87,7 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
 
     private fun setupRecyclerView(){
         binding.rvShopProductList.apply{
+            (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = GridLayoutManager(context, 1)
             adapter = mAdapter
         }
@@ -134,7 +131,7 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
                     binding.apply {
                         mItemDataList = it.successData as MutableList<EMarketShopProductListVO>
                         mItemDataList.mapIndexed { index,item ->
-                            mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickMenuItem))
+                            mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickCounter))
                         }
                         mAdapter.setData(mItemList)
                     }
@@ -161,10 +158,9 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
                     binding.apply {
                         cartProductList = it.successData
                         binding.btnCart.apply {
-                            text = getString(R.string.text_cart_items_with_count,cartProductList.count())
+                            text = resources.getQuantityString(R.plurals.txt_cart_items_with_count,cartProductList.count(),cartProductList.count())
                             visibility = if (cartProductList.isEmpty()) View.GONE else View.VISIBLE
                         }
-
                     }
                 }
                 is ResourceState.SystemError -> {
@@ -187,7 +183,7 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
             binding.tvSelectAll.text = if (isSelectedAll) getString(R.string.txt_unselect_all) else getString(R.string.txt_select_all)
             mItemDataList.mapIndexed { index,item ->
                 item.isChecked = isSelectedAll
-                mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickMenuItem))
+                mItemList.add(EMarketStoreItemDisplayer(index,item,::onClickCheckBox,::onClickCounter))
             }
             mAdapter.setData(mItemList)
         }
@@ -206,8 +202,12 @@ class EMarketHomeActivity : BaseViewBindingActivity<ActivityEmarketHomeBinding>(
         }
     }
 
-    private fun onClickMenuItem(position:Int,data:EMarketShopProductListVO){
-//        mViewModel.addItemToCart(data)
+    private fun onClickCounter(position:Int, data:EMarketShopProductListVO){
+        mItemDataList.removeAt(position)
+        mItemDataList.add(position,data)
+        mItemList.removeAt(position)
+        mItemList.add(position,EMarketStoreItemDisplayer(position,data,::onClickCheckBox,::onClickCounter))
+        mAdapter.addDataAtPosition(mItemList[position],position)
     }
 
 }

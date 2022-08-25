@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.kkk.baseapp.data.repositories.EMarketRepository
 import com.kkk.baseapp.data.vos.EMarketShopProductListVO
 import com.kkk.baseapp.di.hilt.IoDispatcher
-import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
-import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem
+import com.kkk.baseapp.network.networkrequest.EMarketPlaceOrderRequest
+import com.kkk.baseapp.network.networkrequest.Product
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
 import com.kkk.mylibrary.network.rx.SchedulerProvider
@@ -32,6 +32,9 @@ class EMarketViewModel @Inject constructor(
     private var _cartProductList:MutableList<EMarketShopProductListVO> = mutableListOf()
     private var _cartProductListLD:MutableLiveData<ResourceState<MutableList<EMarketShopProductListVO>>> = MutableLiveData(ResourceState.Loading)
     val cartProductListLD: LiveData<ResourceState<MutableList<EMarketShopProductListVO>>> = _cartProductListLD
+
+    private var _makeOrderLD:MutableLiveData<ResourceState<Int>> = MutableLiveData(ResourceState.Loading)
+    val makeOrderLD: LiveData<ResourceState<Int>> = _makeOrderLD
 
     fun getAllStoreInfo(){
         getStoreInfo()
@@ -65,8 +68,33 @@ class EMarketViewModel @Inject constructor(
                 }
         }
     }
-    fun makeOrder(){
+    fun makeOrder(itemList: MutableList<EMarketShopProductListVO>, deliverAddress: String) {
+        val request = EMarketPlaceOrderRequest(deliverAddress,itemList.map { Product(it.imageUrl,it.name,it.price) })
+        viewModelScope.launch(dispatcher) {
+            eMarketRepo.makeOrder(request)
+                .collect{
+                    if (it is ResourceState.Success){
+                        _makeOrderLD.postValue(ResourceState.Success(200))
+                    }else if (it is ResourceState.HttpError){
+                        if (it.code == 900){
+                            _makeOrderLD.postValue(ResourceState.Success(200))
+                        }else{
+                            _makeOrderLD.postValue(it.resultToResultWithoutSuccessData(it))
+                        }
+                }else{
+                        _makeOrderLD.postValue(it.resultToResultWithoutSuccessData(it))
+                    }
+                }
+        }
+    }
 
+    fun getCardItemList(){
+        _cartProductListLD.postValue(ResourceState.Success(_cartProductList))
+    }
+
+    fun setCardItemList(data: ArrayList<EMarketShopProductListVO>) {
+        _cartProductList = data
+        _cartProductListLD.postValue(ResourceState.Success(_cartProductList))
     }
 
     fun addItemToCart(data: EMarketShopProductListVO) {

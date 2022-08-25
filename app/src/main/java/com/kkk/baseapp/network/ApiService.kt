@@ -1,5 +1,6 @@
 package com.kkk.baseapp.network
 
+import com.kkk.baseapp.network.networkrequest.EMarketPlaceOrderRequest
 import com.kkk.baseapp.network.networkresponse.MovieDetailResponse
 import com.kkk.baseapp.network.networkresponse.PopularMovieListResponse
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponse
@@ -8,10 +9,7 @@ import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
 import io.reactivex.Observable
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 //    @GET("movie/popular")
@@ -33,6 +31,6 @@ interface ApiService {
     fun getStoreProductList(): Call<List<EMarketShopProductListResponseItem>>
 
     @POST("order")
-    fun makeOrder() : Call<Int>
+    fun makeOrder(@Body request: EMarketPlaceOrderRequest): Call<Void>
 
 }

@@ -119,7 +119,6 @@
             android:layout_gravity="bottom"
             android:layout_margin="@dimen/spacing_16dp"
             android:textAllCaps="false"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/tv_total_amount_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
