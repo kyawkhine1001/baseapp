@@ -16,9 +16,17 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.snackbar.Snackbar
 import com.kkk.mylibrary.R
 import java.util.*
+
+fun Activity.isGooglePlayServicesAvailable(): Boolean {
+    val googleApiAvailability = GoogleApiAvailability.getInstance()
+    val status = googleApiAvailability.isGooglePlayServicesAvailable(this)
+    return status == ConnectionResult.SUCCESS
+}
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 fun Activity.setCurrentLocale() {

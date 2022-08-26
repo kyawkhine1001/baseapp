@@ -69,6 +69,7 @@ class EMarketViewModel @Inject constructor(
         }
     }
     fun makeOrder(itemList: MutableList<EMarketShopProductListVO>, deliverAddress: String) {
+        _makeOrderLD.postValue(ResourceState.Loading)
         val request = EMarketPlaceOrderRequest(deliverAddress,itemList.map { Product(it.imageUrl,it.name,it.price) })
         viewModelScope.launch(dispatcher) {
             eMarketRepo.makeOrder(request)
@@ -106,7 +107,7 @@ class EMarketViewModel @Inject constructor(
             item?.let {
                 it.quantity += 1
                 _cartProductList.removeAt(itemIndex)
-                _cartProductList.add(itemIndex,item)
+                _cartProductList.add(itemIndex,it)
             }
         }
         _cartProductListLD.postValue(ResourceState.Success(_cartProductList))

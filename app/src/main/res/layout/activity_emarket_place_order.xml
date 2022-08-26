@@ -112,7 +112,7 @@
             android:layout_margin="@dimen/spacing_16dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_cart"
+            android:id="@+id/btn_place_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txt_place_order"

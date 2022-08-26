@@ -33,7 +33,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
                 startActivity(intent)
             }
             PageTitle.E_MARKET.title-> {
-                val intent = EMarketHomeActivity.newIntent(this,it)
+                val intent = EMarketHomeActivity.newIntent(this)
                 startActivity(intent)
             }
         }

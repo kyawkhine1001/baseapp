@@ -20,6 +20,7 @@ class EMarketStoreCartItemDisplayer(private val position:Int, private val data: 
             tvItemName.text = data.name
             tvPrice.text = "$ ${data.price.toDouble()}"
             tvItemQuantity.text = "${data.quantity}x"
+            srlCartItem.close(true)
             ivDeleteItem.setOnClickListener {
                 onClickDelete(position,data)
             }

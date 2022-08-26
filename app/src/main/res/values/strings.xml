@@ -25,5 +25,6 @@
     <string name="txt_successfully_order_created">Successfully Order Created</string>
     <string name="txt_done">Done</string>
     <string name="txt_dollar">$%1$d</string>
+    <string name="txt_opening_time_to">Opening time : %1$s to %2$s</string>
 
 </resources>
