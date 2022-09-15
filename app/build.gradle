@@ -108,9 +108,15 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2"
     implementation "com.github.satoshun.coroutine.autodispose:autodispose:0.3.1"
     implementation "androidx.work:work-runtime-ktx:2.7.1"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2"
 
     //DataStore
     implementation 'androidx.datastore:datastore-core:1.0.0'
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+
+    //Test
+    testImplementation "org.mockito:mockito-core:3.6.28"
+    androidTestImplementation "org.mockito:mockito-android:3.6.28"
+    testImplementation "android.arch.core:core-testing:1.1.1"
 }

@@ -19,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class EMarketViewModel @Inject constructor(
     private val eMarketRepo: EMarketRepository,
-    private val schedulers: SchedulerProvider,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ): BaseViewModel() {
 
