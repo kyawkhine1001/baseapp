@@ -1,4 +1,4 @@
-package com.kkk.mylibrary.ui.activity
+package com.kkk.mylibrary.ui.fragment
 
 import android.app.Dialog
 import android.os.Build
@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import com.kkk.mylibrary.BaseApp
 import com.kkk.mylibrary.R
-import com.kkk.mylibrary.utils.setCurrentLocale
+import com.kkk.mylibrary.utils.extensions.setCurrentLocale
 import java.util.*
 
 abstract class BaseFragment : Fragment() {
@@ -56,7 +56,7 @@ abstract class BaseFragment : Fragment() {
 
     private fun addProgressBar(@StyleRes theme:Int) {
         if (isShowingProgressBar) return
-        val dialog = Dialog(requireContext(), theme)
+        val dialog = Dialog(requireActivity(), theme)
         dialog.setContentView(R.layout.loading)
         dialog.setCancelable(false)
         progressDialog = dialog

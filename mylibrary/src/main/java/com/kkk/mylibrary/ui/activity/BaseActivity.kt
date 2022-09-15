@@ -3,13 +3,14 @@ package com.kkk.mylibrary.ui.activity
 import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.annotation.CallSuper
 import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
 import com.kkk.mylibrary.BaseApp
 import com.kkk.mylibrary.R
-import com.kkk.mylibrary.utils.setCurrentLocale
+import com.kkk.mylibrary.utils.extensions.setCurrentLocale
 import java.util.*
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun addProgressBar(@StyleRes theme:Int) {
-        if (isShowingProgressBar) return
+        if (isShowingProgressBar && progressDialog?.isShowing == true) return
         val dialog = Dialog(this, theme)
         dialog.setContentView(R.layout.loading)
         dialog.setCancelable(false)
@@ -53,7 +54,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun showLoadingView() {
-        if (isShowingProgressBar) return
+        if (isShowingProgressBar && progressDialog?.isShowing == true) return
         progressDialog?.show()
         isShowingProgressBar = true
     }
@@ -61,5 +62,14 @@ abstract class BaseActivity : AppCompatActivity() {
     fun hideLoadingView() {
         progressDialog?.hide()
         isShowingProgressBar = false
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.itemId
+        if (id == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

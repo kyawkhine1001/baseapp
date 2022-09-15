@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/spacing_38dp">
+
+    <TextView
+        android:id="@+id/tv_spn_text"
+        android:layout_width="@dimen/spacing_100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingEnd="16dp"
+        android:textSize="14sp"
+        tools:text="Yangon"
+        android:layout_marginLeft="8dp"
+        android:paddingRight="16dp" />
+
+</LinearLayout>

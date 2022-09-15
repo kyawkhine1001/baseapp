@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.isseiaoki.simplecropview.CropImageView
+        android:id="@+id/cropImageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/spacing_8dp"
+        custom:scv_background_color="#000000"
+        custom:scv_crop_mode="circle"
+        custom:scv_frame_color="#ffffff"
+        custom:scv_frame_stroke_weight="1dp"
+        custom:scv_guide_show_mode="not_show"
+        custom:scv_handle_color="#FF7043"
+        custom:scv_handle_show_mode="show_always"
+        custom:scv_handle_size="@dimen/spacing_8dp"
+        custom:scv_min_frame_size="@dimen/spacing_100dp"
+        custom:scv_overlay_color="#cc000000"
+        custom:scv_touch_padding="8dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/buttonPickImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/spacing_16dp"
+            android:src="@drawable/ic_photo_library_black_24dp"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonRotateLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/spacing_16dp"
+                android:src="@drawable/ic_rotate_left_black_24dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/buttonRotateRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/spacing_16dp"
+                android:src="@drawable/ic_rotate_right_black_24dp"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/buttonDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/spacing_16dp"
+            android:src="@drawable/ic_done_black_24dp"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+</LinearLayout>

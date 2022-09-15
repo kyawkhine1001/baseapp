@@ -63,6 +63,23 @@ fun createOkHttpClient(_errorSubject:PublishSubject<Any>,headerInterceptor:Inter
     return client.build()
 }
 
+inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
+    val retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build()
+    return retrofit.create(T::class.java)
+}
+
+fun createOkHttpClient(): OkHttpClient {
+    val httpLoggingInterceptor = HttpLoggingInterceptor()
+    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
+    return OkHttpClient.Builder()
+        .connectTimeout(60L, TimeUnit.SECONDS)
+        .readTimeout(60L, TimeUnit.SECONDS)
+        .addInterceptor(httpLoggingInterceptor).build()
+}
 private fun headerInterceptor(context: Context): Interceptor? {
     return Interceptor { chain ->
         val requestBuilder = chain.request().newBuilder()

@@ -1,3 +1,75 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="tool_bar_size">46dp</dimen>
+
+    //Common
+
+    <dimen name="max_length">250</dimen>
+
+    <dimen name="spacing_0dp">0dp</dimen>
+    <dimen name="spacing_2dp">2dp</dimen>
+    <dimen name="spacing_4dp">4dp</dimen>
+    <dimen name="spacing_6dp">6dp</dimen>
+    <dimen name="spacing_8dp">8dp</dimen>
+    <dimen name="spacing_10dp">10dp</dimen>
+    <dimen name="spacing_12dp">12dp</dimen>
+    <dimen name="spacing_14dp">14dp</dimen>
+    <dimen name="spacing_15dp">15dp</dimen>
+    <dimen name="spacing_16dp">16dp</dimen>
+    <dimen name="spacing_18dp">18dp</dimen>
+    <dimen name="spacing_20dp">20dp</dimen>
+    <dimen name="spacing_24dp">24dp</dimen>
+    <dimen name="spacing_25dp">25dp</dimen>
+    <dimen name="spacing_26dp">26dp</dimen>
+    <dimen name="spacing_28dp">28dp</dimen>
+    <dimen name="spacing_30dp">30dp</dimen>
+    <dimen name="spacing_32dp">32dp</dimen>
+    <dimen name="spacing_36dp">36dp</dimen>
+    <dimen name="spacing_38dp">38dp</dimen>
+    <dimen name="spacing_39dp">39dp</dimen>
+    <dimen name="spacing_44dp">44dp</dimen>
+    <dimen name="spacing_48dp">48dp</dimen>
+    <dimen name="spacing_50dp">50dp</dimen>
+    <dimen name="spacing_56dp">56dp</dimen>
+    <dimen name="spacing_60dp">60dp</dimen>
+    <dimen name="spacing_64dp">64dp</dimen>
+    <dimen name="spacing_68dp">68dp</dimen>
+    <dimen name="spacing_69dp">69dp</dimen>
+    <dimen name="spacing_70dp">70dp</dimen>
+    <dimen name="spacing_72dp">72dp</dimen>
+    <dimen name="spacing_80dp">80dp</dimen>
+    <dimen name="spacing_86dp">86dp</dimen>
+    <dimen name="spacing_90dp">90dp</dimen>
+    <dimen name="spacing_200dp">200dp</dimen>
+
+
+    <dimen name="text_size_8sp">8sp</dimen>
+    <dimen name="text_size_10sp">10sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_28sp">28sp</dimen>
+    <dimen name="text_size_26sp">26sp</dimen>
+    <dimen name="text_size_32sp">32sp</dimen>
+    <dimen name="text_size_34sp">34sp</dimen>
+    <dimen name="text_size_36sp">36sp</dimen>
+    <dimen name="text_size_44sp">44sp</dimen>
+    <dimen name="text_size_48sp">48sp</dimen>
+
+    <dimen name="toolbar_text_size">16sp</dimen>
+
+    <dimen name="app_button_height">56sp</dimen>
+    <dimen name="back_button_size">46dp</dimen>
+    <dimen name="spacing_100dp">100dp</dimen>
+    <dimen name="spacing_120dp">120dp</dimen>
+    <dimen name="popjlar_auction_card_height">150dp</dimen>
+    <dimen name="auction_status_text_width">80dp</dimen>
+    <dimen name="spacing_auction_header">150dp</dimen>
+
+    <dimen name="img_size_140">140dp</dimen>
+
 </resources>

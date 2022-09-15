@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.TravelActivity">
+
+    <com.aemerse.slider.ImageCarousel
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        app:showTopShadow="true"
+        app:topShadowAlpha="0.6"
+        app:topShadowHeight="32dp"
+
+        app:showBottomShadow="true"
+        app:bottomShadowAlpha="0.6"
+        app:bottomShadowHeight="64dp"
+
+        app:showCaption="true"
+        app:captionMargin="0dp"
+        app:captionTextSize="14sp"
+
+        app:showIndicator="true"
+        app:indicatorMargin="0dp"
+
+        app:imageScaleType="centerCrop"
+
+        app:carouselBackground="#00000000"
+        app:imagePlaceholder="@android:drawable/ic_menu_help"
+
+        app:carouselPadding="0dp"
+        app:carouselPaddingBottom="0dp"
+        app:carouselPaddingEnd="0dp"
+        app:carouselPaddingStart="0dp"
+        app:carouselPaddingTop="0dp"
+
+        app:carouselType="BLOCK"
+        app:carouselGravity="CENTER"
+
+        app:scaleOnScroll="false"
+        app:scalingFactor="0.15"
+        app:autoWidthFixing="true"
+        app:autoPlay="true"
+        app:autoPlayDelay="1000"
+        app:infiniteCarousel="true"
+        app:touchToPause="true"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        tools:listitem="@layout/list_item_movie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carousel"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

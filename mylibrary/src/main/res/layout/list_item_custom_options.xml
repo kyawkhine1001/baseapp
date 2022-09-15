@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_more_option"
+            android:layout_width="@dimen/spacing_16dp"
+            android:layout_height="@dimen/spacing_16dp"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars"
+            android:layout_marginLeft="@dimen/spacing_24dp" />
+
+        <TextView
+            android:id="@+id/tv_more_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/spacing_8dp"
+            android:paddingVertical="@dimen/spacing_16dp"
+            android:textColor="#737373"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_more_option"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_more_option"
+            app:layout_constraintTop_toTopOf="@+id/iv_more_option"
+            tools:text="Do Something" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" >
+        <layer-list>
+            <item android:drawable="@drawable/ic_checkbox_selected_bg1"
+                android:height="16dp"
+                android:width="16dp"
+                android:gravity="center"/>
+        </layer-list>
+    </item>
+    <item android:state_checked="false" >
+        <layer-list>
+            <item android:drawable="@drawable/ic_checkbox_default_bg1"
+                android:height="16dp"
+                android:width="16dp"
+                android:gravity="center"/>
+        </layer-list>
+    </item>
+</selector>
