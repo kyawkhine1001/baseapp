@@ -4,8 +4,8 @@ import android.content.Context
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.kkk.baseapp.data.db.MyDatabase
-import com.kkk.baseapp.data.repositories.MainRepository
-import com.kkk.baseapp.data.repositories.MainRepositoryImpl
+import com.kkk.baseapp.domain.repo.MainRepository
+import com.kkk.baseapp.data.repoImpl.MainRepositoryImpl
 import com.kkk.baseapp.network.ApiService
 import com.kkk.baseapp.util.AppConstants
 import okhttp3.OkHttpClient

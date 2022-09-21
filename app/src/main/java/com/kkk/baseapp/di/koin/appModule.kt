@@ -1,10 +1,9 @@
 package com.kkk.baseapp.di.koin
 
-import com.kkk.baseapp.data.repositories.EMarketRepository
-import com.kkk.baseapp.data.repositories.EMarketRepositoryImpl
-import com.kkk.baseapp.data.repositories.MainRepository
-import com.kkk.baseapp.data.repositories.MainRepositoryImpl
-import com.kkk.baseapp.viewmodel.EMarketViewModel
+import com.kkk.baseapp.domain.repo.EMarketRepository
+import com.kkk.baseapp.data.repoImpl.EMarketRepositoryImpl
+import com.kkk.baseapp.domain.repo.MainRepository
+import com.kkk.baseapp.data.repoImpl.MainRepositoryImpl
 import com.kkk.baseapp.viewmodel.MainViewModel
 import com.kkk.mylibrary.network.rx.AndroidSchedulerProvider
 import com.kkk.mylibrary.network.rx.SchedulerProvider

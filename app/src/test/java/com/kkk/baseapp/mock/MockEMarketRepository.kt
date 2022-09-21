@@ -1,6 +1,6 @@
 package com.kkk.baseapp.mock
 
-import com.kkk.baseapp.data.repositories.EMarketRepository
+import com.kkk.baseapp.domain.repo.EMarketRepository
 import com.kkk.baseapp.mock.data.MockDataUtils
 import com.kkk.baseapp.network.networkrequest.EMarketPlaceOrderRequest
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListResponseItem

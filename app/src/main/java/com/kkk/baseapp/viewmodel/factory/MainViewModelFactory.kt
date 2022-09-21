@@ -1,9 +1,7 @@
 package com.kkk.baseapp.viewmodel.factory
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kkk.baseapp.viewmodel.MainViewModel
-import com.kkk.baseapp.data.repositories.MainRepository
+import com.kkk.baseapp.domain.repo.MainRepository
 import com.kkk.mylibrary.network.rx.SchedulerProvider
 
 class MainViewModelFactory(private val repo: MainRepository, val schedulers:SchedulerProvider) : ViewModelProvider.Factory {

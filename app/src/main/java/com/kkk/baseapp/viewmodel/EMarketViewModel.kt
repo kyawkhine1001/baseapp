@@ -3,14 +3,13 @@ package com.kkk.baseapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kkk.baseapp.data.repositories.EMarketRepository
+import com.kkk.baseapp.domain.repo.EMarketRepository
 import com.kkk.baseapp.data.vos.EMarketShopProductListVO
 import com.kkk.baseapp.di.hilt.IoDispatcher
 import com.kkk.baseapp.network.networkrequest.EMarketPlaceOrderRequest
 import com.kkk.baseapp.network.networkrequest.Product
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
-import com.kkk.mylibrary.network.rx.SchedulerProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch

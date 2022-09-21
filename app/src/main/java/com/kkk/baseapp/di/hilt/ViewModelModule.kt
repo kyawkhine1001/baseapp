@@ -2,17 +2,16 @@ package com.kkk.baseapp.di.hilt
 
 import android.content.Context
 import com.kkk.baseapp.data.db.MyDatabase
-import com.kkk.baseapp.data.repositories.EMarketRepository
-import com.kkk.baseapp.data.repositories.EMarketRepositoryImpl
-import com.kkk.baseapp.data.repositories.MainRepository
-import com.kkk.baseapp.data.repositories.MainRepositoryImpl
+import com.kkk.baseapp.domain.repo.EMarketRepository
+import com.kkk.baseapp.data.repoImpl.EMarketRepositoryImpl
+import com.kkk.baseapp.domain.repo.MainRepository
+import com.kkk.baseapp.data.repoImpl.MainRepositoryImpl
 import com.kkk.baseapp.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 
 
 @Module
@@ -20,9 +19,9 @@ import dagger.hilt.components.SingletonComponent
 object ViewModelModule {
 
     @Provides
-    fun provideMainRepo(@ApplicationContext context: Context,apiService: ApiService,database: MyDatabase):MainRepository = MainRepositoryImpl(context,apiService,database)
+    fun provideMainRepo(@ApplicationContext context: Context,apiService: ApiService,database: MyDatabase): MainRepository = MainRepositoryImpl(context,apiService,database)
 
     @Provides
-    fun provideEMarketRepo(@ApplicationContext context: Context,apiService: ApiService,database: MyDatabase):EMarketRepository = EMarketRepositoryImpl(context,apiService,database)
+    fun provideEMarketRepo(@ApplicationContext context: Context,apiService: ApiService,database: MyDatabase): EMarketRepository = EMarketRepositoryImpl(context,apiService,database)
 
 }

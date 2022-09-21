@@ -19,9 +19,9 @@ class GalleryContract : ActivityResultContract<CropImageData, String>() {
         }
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): String? {
+    override fun parseResult(resultCode: Int, intent: Intent?): String {
         val data = intent?.getStringExtra(BundleConstants.EXTRA_URI)
         return if (resultCode == Activity.RESULT_OK && data != null) data
-        else null
+        else ""
     }
 }

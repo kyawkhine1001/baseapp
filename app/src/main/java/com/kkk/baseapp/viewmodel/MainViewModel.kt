@@ -1,7 +1,7 @@
 package com.kkk.baseapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.kkk.baseapp.data.repositories.MainRepository
+import com.kkk.baseapp.domain.repo.MainRepository
 import com.kkk.baseapp.network.networkresponse.*
 import com.kkk.mylibrary.network.rx.SchedulerProvider
 
