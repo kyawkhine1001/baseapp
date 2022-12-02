@@ -1,15 +1,12 @@
 package com.kkk.baseapp.ui.adapter.viewholder
 
 import android.view.View
-import androidx.core.content.ContextCompat
-import com.kkk.baseapp.R
-import com.kkk.baseapp.network.networkresponse.PopularMovie
+import com.kkk.baseapp.ui.vo.MovieVO
 import com.kkk.baseapp.util.AppConstants
 import com.kkk.mylibrary.ui.adapter.viewholder.BaseRecyclerViewHolder
-import com.kkk.mylibrary.utils.extensions.loadImageWithGlide
 
-class MovieListViewHolder(itemView: View, val onClick:(PopularMovie) -> Unit) : BaseRecyclerViewHolder<PopularMovie>(itemView) {
-    override fun setData(data: PopularMovie) {
+class MovieListViewHolder(itemView: View, val onClick:(MovieVO) -> Unit) : BaseRecyclerViewHolder<MovieVO>(itemView) {
+    override fun setData(data: MovieVO) {
         itemView.apply {
             data.posterPath?.let {
                 val url = AppConstants.imageBaseUrl+it

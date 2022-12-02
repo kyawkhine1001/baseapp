@@ -52,18 +52,18 @@ class MovieReviewDetailActivity : BaseViewBindingActivity<ActivityMovieReviewDet
         binding.nsMovieDetail.visibility = View.INVISIBLE
         showLoadingView()
         mViewModel.loadMovieDetail(movieId!!)
-        mViewModel.movieDetailSuccessState.observe(this, Observer {
-            bindDetailView(it)
-            binding.nsMovieDetail.visibility = View.VISIBLE
-            binding.emptyViewDetail.visibility = View.GONE
-            hideLoadingView()
-        })
-
-        mViewModel.movieDetailErrorState.observe(this, Observer {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            binding.emptyViewDetail.visibility = View.VISIBLE
-            hideLoadingView()
-        })
+//        mViewModel.movieDetailSuccessState.observe(this, Observer {
+//            bindDetailView(it)
+//            binding.nsMovieDetail.visibility = View.VISIBLE
+//            binding.emptyViewDetail.visibility = View.GONE
+//            hideLoadingView()
+//        })
+//
+//        mViewModel.movieDetailErrorState.observe(this, Observer {
+//            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+//            binding.emptyViewDetail.visibility = View.VISIBLE
+//            hideLoadingView()
+//        })
     }
 
     private fun bindDetailView(movieData: MovieDetailResponse) {

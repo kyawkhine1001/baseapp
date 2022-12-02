@@ -1,22 +1,16 @@
 package com.kkk.baseapp.domain.repo
 
-import androidx.lifecycle.MutableLiveData
-import com.kkk.baseapp.network.networkresponse.*
-import io.reactivex.Observable
+import androidx.paging.PagingData
+import com.kkk.baseapp.domain.pojo.MovieDetailDomain
+import com.kkk.baseapp.domain.pojo.MovieDomain
+import com.kkk.mylibrary.network.ResourceState
+import kotlinx.coroutines.flow.Flow
 
 interface MainRepository {
-    var popularMovieData:MutableLiveData<Observable<PopularMovieListResponse>>
-    var upcomingMovieData:MutableLiveData<Observable<PopularMovieListResponse>>
-    var trendingMovieData:MutableLiveData<Observable<PopularMovieListResponse>>
-    var favouriteMovieData:MutableLiveData<Observable<PopularMovieListResponse>>
-    var movieDetailData:MutableLiveData<Observable<MovieDetailResponse>>
-    fun fetchPopularMovieData()
-    fun fetchUpcomingMovieData()
-    fun fetchTrendingMovieData()
-    fun fetchFavouriteMovieData()
-    fun savePopularMovieDataIntoDatabase(movieList:List<PopularMovie>)
-    fun saveUpcomingMovieDataIntoDatabase(movieList:List<UpcomingMovie>)
-    fun saveTrendingMovieDataIntoDatabase(movieList:List<TrendingMovie>)
-    fun updateFavoriteDataByMovieType(movieId:Int,isFavorite: Int)
-    fun loadMovieDetail(movieId: Int)
+    fun fetchPopularMovieData(): Flow<PagingData<MovieDomain>>
+    suspend fun fetchUpcomingMovieData(): ResourceState<List<MovieDomain>?>
+    fun savePopularMovieDataIntoDatabase(movieList:List<MovieDomain>)
+    fun saveUpcomingMovieDataIntoDatabase(movieList:List<MovieDomain>)
+    fun updateFavoriteDataByMovieType(iD:Int,isFavorite: Int)
+    suspend fun fetchMovieDetail(movieId: Int): ResourceState<MovieDetailDomain?>
 }

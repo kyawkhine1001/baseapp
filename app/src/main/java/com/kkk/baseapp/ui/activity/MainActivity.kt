@@ -17,7 +17,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
     private val pageTypeAdapter:PageTypeAdapter by lazy { PageTypeAdapter{
         when(it){
             PageTitle.MOVIE_REVIEW.title-> {
-                val intent = MovieReviewActivity.newIntent(this,it)
+                val intent = MovieListActivity.newIntent(this,it)
                 startActivity(intent)
             }
             PageTitle.LOGIN.title-> {

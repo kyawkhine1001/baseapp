@@ -48,6 +48,8 @@ object AppDependencies {
     //Room Database
     val roomRuntime = "androidx.room:room-runtime:${Versions.roomDatabase}"
     val roomRxJava = "androidx.room:room-rxjava2:${Versions.roomDatabase}"
+    val roomKtx = "androidx.room:room-ktx:${Versions.roomDatabase}"
+    val roomPaging = "androidx.room:room-paging:${Versions.roomDatabase}"
     val roomCompiler = "androidx.room:room-compiler:${Versions.roomDatabase}"
 
     //Koin
@@ -129,6 +131,8 @@ object AppDependencies {
         val roomDatabase = arrayListOf<String>().apply {
             add(roomRuntime)
             add(roomRxJava)
+            add(roomKtx)
+            add(roomPaging)
 //            add(roomCompiler)
         }
         val coroutineLibrary = arrayListOf<String>().apply {

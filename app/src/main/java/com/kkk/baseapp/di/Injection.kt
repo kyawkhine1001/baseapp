@@ -35,8 +35,8 @@ object Injection {
         return MyDatabase.getInstance(context)
     }
 
-    fun provideMainRepository(context: Context): MainRepository {
-        return MainRepositoryImpl(context, provideApiService(), provideDatabase(context))
-    }
+//    fun provideMainRepository(context: Context): MainRepository {
+//        return MainRepositoryImpl(context, provideApiService(), provideDatabase(context))
+//    }
 
 }

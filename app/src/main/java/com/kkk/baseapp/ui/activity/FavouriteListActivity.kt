@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kkk.baseapp.databinding.ActivityFavouriteListBinding
-import com.kkk.baseapp.network.networkresponse.PopularMovie
-import com.kkk.baseapp.network.networkresponse.mappingToPopular
 import com.kkk.baseapp.ui.adapter.displayer.MovieFavouriteItemDisplayer
+import com.kkk.baseapp.ui.vo.MovieVO
 import com.kkk.baseapp.viewmodel.MainViewModel
 import com.kkk.mylibrary.ui.activity.BaseViewBindingActivity
 import com.kkk.mylibrary.ui.adapter.DelegateAdapter
@@ -48,32 +47,32 @@ class FavouriteListActivity : BaseViewBindingActivity<ActivityFavouriteListBindi
             layoutManager = GridLayoutManager(context, 1)
             adapter = mAdapter
         }
-        mViewModel.favouriteMovieSuccessState.observe(this, Observer {movieList->
-            mItemList.clear()
-            movieList.map {
-                mItemList.add(MovieFavouriteItemDisplayer(it.mappingToPopular()){ movie->
-                    onClickItem(movie)
-                })
-            }
-            mAdapter.setData(mItemList)
-            Toast.makeText(this, movieList.size.toString(), Toast.LENGTH_SHORT).show()
-            binding.emptyViewFavourite.visibility = if(movieList.isEmpty()) View.VISIBLE else View.GONE
-            hideLoadingView()
-            Toast.makeText(this, movieList.size.toString(), Toast.LENGTH_SHORT).show()
-        })
-        mViewModel.favouriteMovieErrorState.observe(this, Observer {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            binding.emptyViewFavourite.visibility = View.VISIBLE
-            hideLoadingView()
-        })
-        showLoadingView()
+//        mViewModel.favouriteMovieSuccessState.observe(this, Observer {movieList->
+//            mItemList.clear()
+//            movieList.map {
+//                mItemList.add(MovieFavouriteItemDisplayer(it.mappingToPopular()){ movie->
+//                    onClickItem(movie)
+//                })
+//            }
+//            mAdapter.setData(mItemList)
+//            Toast.makeText(this, movieList.size.toString(), Toast.LENGTH_SHORT).show()
+//            binding.emptyViewFavourite.visibility = if(movieList.isEmpty()) View.VISIBLE else View.GONE
+//            hideLoadingView()
+//            Toast.makeText(this, movieList.size.toString(), Toast.LENGTH_SHORT).show()
+//        })
+//        mViewModel.favouriteMovieErrorState.observe(this, Observer {
+//            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+//            binding.emptyViewFavourite.visibility = View.VISIBLE
+//            hideLoadingView()
+//        })
+//        showLoadingView()
     }
 
     override fun onResume() {
         super.onResume()
-        mViewModel.loadFavouriteMovieList()
+//        mViewModel.loadFavouriteMovieList()
     }
-    private fun onClickItem(data:PopularMovie){
+    private fun onClickItem(data:MovieVO){
         val intent = MovieReviewDetailActivity.newIntent(this,data.movieId!!,data.title!!,data.favouriteMovie!!)
         startActivity(intent)
     }

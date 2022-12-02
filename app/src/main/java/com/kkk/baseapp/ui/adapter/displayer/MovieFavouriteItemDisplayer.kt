@@ -4,13 +4,13 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.kkk.baseapp.R
 import com.kkk.baseapp.databinding.ListItemMovieBinding
-import com.kkk.baseapp.network.networkresponse.PopularMovie
+import com.kkk.baseapp.ui.vo.MovieVO
 import com.kkk.baseapp.util.AppConstants
 import com.kkk.mylibrary.ui.adapter.displayer.ItemDisplayer
 import com.kkk.mylibrary.ui.adapter.displayer.ViewType
 import com.kkk.mylibrary.utils.extensions.loadImageWithGlide
 
-class MovieFavouriteItemDisplayer(val data: PopularMovie, val onClick:(PopularMovie) -> Unit): ItemDisplayer {
+class MovieFavouriteItemDisplayer(val data: MovieVO, val onClick:(MovieVO) -> Unit): ItemDisplayer {
     override fun getViewType(): ViewType = ViewType(R.layout.list_item_movie)
     override fun bind(vb: ViewDataBinding) {
         val binding = vb as ListItemMovieBinding

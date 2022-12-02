@@ -9,10 +9,12 @@ import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopProductListRes
 import com.kkk.baseapp.network.networkresponse.emarket.EMarketShopResponse
 import com.kkk.mylibrary.network.ResourceState
 import com.kkk.mylibrary.utils.network.HandleResponseUtil
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class EMarketRepositoryImpl(
-    private val context: Context,
+class EMarketRepositoryImpl @Inject constructor(
+    @ApplicationContext val context: Context,
     private val mApiService: ApiService,
     private val database: MyDatabase
 ): EMarketRepository {
