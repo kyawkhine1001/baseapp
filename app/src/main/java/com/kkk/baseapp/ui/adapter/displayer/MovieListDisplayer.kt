@@ -14,7 +14,7 @@ import com.kkk.mylibrary.ui.adapter.displayer.ViewType
 class MovieListDisplayer(val index:Int, val data:List<MovieVO>? = null, private val onClick:(MovieVO) -> Unit, private val onClickFavorite:(Int, Int, MovieVO) -> Unit): ItemDisplayer {
     private var mItemList = mutableListOf<ItemDisplayer>()
     private val mAdapter: DelegateAdapter = DelegateAdapter()
-    private val pagingAdapter: MovieListPagingAdapter = MovieListPagingAdapter()
+    private val pagingAdapter: MovieListPagingAdapter = MovieListPagingAdapter(onClick)
 //    private val pagingAdapter = DelegatePagingAdapter<MovieVO>()
 
     override fun bind(vb: ViewDataBinding) {

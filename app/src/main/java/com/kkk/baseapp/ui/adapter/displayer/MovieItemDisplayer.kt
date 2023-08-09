@@ -32,7 +32,9 @@ class MovieItemDisplayer(private val parentIndex:Int, private val childIndex:Int
 //                }
                 onClickFavorite(parentIndex,childIndex,data)
             }
-            root.setOnClickListener { onClick(data) }
+            root.setOnClickListener {
+                onClick(data)
+            }
         }
     }
 

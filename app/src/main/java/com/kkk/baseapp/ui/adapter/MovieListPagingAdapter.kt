@@ -10,7 +10,7 @@ import com.kkk.baseapp.ui.vo.MovieVO
 import com.kkk.baseapp.util.AppConstants
 import com.kkk.mylibrary.utils.extensions.loadImageWithGlide
 
-class MovieListPagingAdapter : PagingDataAdapter<MovieVO, MovieItemViewHolder>(
+class MovieListPagingAdapter(val onClick:(MovieVO) -> Unit) : PagingDataAdapter<MovieVO, MovieItemViewHolder>(
     MovieItemDiffCallback
     ) {
     private var position: Int = -1
@@ -19,7 +19,7 @@ class MovieListPagingAdapter : PagingDataAdapter<MovieVO, MovieItemViewHolder>(
         MovieItemViewHolder.create(parent)
 
     override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int){
-        getItem(position)?.let { holder.bind(data = it, position) }
+        getItem(position)?.let { holder.bind(data = it, position,onClick = onClick) }
     }
 
     companion object{
@@ -46,7 +46,7 @@ class MovieItemViewHolder(
     private val binding: ItemMovieItemBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(data: MovieVO, position: Int) {
+    fun bind(data: MovieVO, position: Int, onClick:(MovieVO) -> Unit) {
         data ?: return
         with(binding) {
             data.posterPath?.let {
@@ -68,7 +68,7 @@ class MovieItemViewHolder(
 //                }
 //                onClickFavorite(parentIndex,childIndex,data)
             }
-//            root.setOnClickListener { onClick(data) }
+            root.setOnClickListener { onClick(data) }
         }
     }
 

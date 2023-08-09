@@ -44,7 +44,7 @@ class MovieListActivity : BaseViewBindingActivity<ActivityMovieReviewBinding>() 
     private var upcomingItemList = mutableListOf<ItemDisplayer>()
     private val mAdapter: DelegateAdapter = DelegateAdapter()
 
-    private val pagingAdapter: MovieListPagingAdapter = MovieListPagingAdapter()
+    private val pagingAdapter: MovieListPagingAdapter = MovieListPagingAdapter(::onClickItem)
 
     companion object{
         private const val IE_NAME = "IE_NAME"
@@ -223,6 +223,8 @@ class MovieListActivity : BaseViewBindingActivity<ActivityMovieReviewBinding>() 
 //                )
 //            }
 //        startActivity(intent)
+        val intent = MovieReviewDetailActivity.newIntent(this,data.movieId!!,data.title!!,data.favouriteMovie!!)
+        startActivity(intent)
     }
 
     private fun onClickFavourite(parentIndex: Int, childIndex: Int, data: MovieVO) {
